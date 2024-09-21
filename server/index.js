@@ -4,6 +4,7 @@ import dotenv from "dotenv"; // dotenv module to load environment variables from
 import cookieParser from "cookie-parser"; // Middleware to parse cookies
 import cors from "cors"; // Middleware to handle Cross-Origin Resource Sharing (CORS)
 import { userRoute } from "./routes/userRoute.js";
+import { residencyRoute } from "./routes/residencyRoute.js";
 
 dotenv.config(); // Load environment variables
 
@@ -19,13 +20,10 @@ app.get("/", function (req, res) {
   res.send("Hello World!");
 });
 
-
-app.use('/api/user',userRoute)
-
+app.use("/api/user", userRoute)
+app.use("/api/residency", residencyRoute)
 
 // Start the server and listen on the defined port
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}/`);
 });
-
-
