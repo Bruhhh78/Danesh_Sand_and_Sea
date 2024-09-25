@@ -92,3 +92,7 @@ export const cancelBooking = asyncHandler(async (req, res) => {
     throw new Error(err.message);
   }
 });
+
+
+//funtion to add a residency in the favourite list
+
