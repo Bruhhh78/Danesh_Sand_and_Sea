@@ -51,12 +51,15 @@ export const bookVisit = asyncHandler(async (req, res) => {
 });
 
 // Function to get all the bookings
-// export const getAllBookings = asyncHandler(async (req, res) => {
-//   const bookings
-  // const residencies = await prisma.residency.findMany({
-  //   orderBy: {
-  //     createdAt: "desc",
-  //   },
-  // });
-  // res.send(residencies);
-// });
+export const getAllBookings = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  try {
+    const bookings = await prisma.user.findUnique({
+      where: { email },
+      select: { bookedVisits: true },
+    });
+    res.status(200).send(bookings)
+  } catch (error) {
+    throw new Error(err.message);
+  }
+});
