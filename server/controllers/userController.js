@@ -58,7 +58,36 @@ export const getAllBookings = asyncHandler(async (req, res) => {
       where: { email },
       select: { bookedVisits: true },
     });
-    res.status(200).send(bookings)
+    res.status(200).send(bookings);
+  } catch (error) {
+    throw new Error(err.message);
+  }
+});
+
+// Function to Cancel the bookings
+
+export const cancelBooking = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const { id } = req.params;
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email: email },
+      select: { bookedVisits: true },
+    });
+
+    const index = user.bookedVisits.findIndex((visit) => visit.id === id);
+
+    if (index === -1) {
+      res.status(404).json({ message: "Booking not found" });
+    } else {
+      user.bookedVisits.splice(index, 1);
+      await prisma.user.update({
+        where: { email: email },
+        data: { bookedVisits: user.bookedVisits },
+      });
+      res.send("Booking Cancelled Successfully")
+    }
   } catch (error) {
     throw new Error(err.message);
   }
