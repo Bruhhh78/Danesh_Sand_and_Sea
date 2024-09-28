@@ -15,13 +15,13 @@ app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
 app.use(cors()); // Enable CORS
 
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   console.log("Backend Working!");
   res.send("Hello World!");
 });
 
-app.use("/api/user", userRoute)
-app.use("/api/residency", residencyRoute)
+app.use("/api/user", userRoute);
+app.use("/api/residency", residencyRoute);
 
 // Start the server and listen on the defined port
 app.listen(PORT, () => {
