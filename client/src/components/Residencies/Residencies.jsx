@@ -2,13 +2,41 @@ import react from "react";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 import "./Residencies.css";
-import data from "../../utils/slider.json";
 import { sliderSetings } from "../../utils/common";
 import PropertyCard from "../PropertyCard/PropertyCard";
+import useProperties from "../../hooks/useProperties";
+import { PuffLoader } from "react-spinners";
+
 
 const Residencies = () => {
+
+  const {data, isError, isLoading} = useProperties();
+
+  if (isError) {
+    return (
+      <div className="wrapper">
+        <span>Error While Fetching data</span>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flexColCenter" style={{ height: "60vh" }}>
+        <PuffLoader
+          height="80"
+          width="80"
+          radius={1}
+          color="#4066ff"
+          aria-label="puff-loading"
+        />
+      </div>
+    );
+  }
+
+
   return (
-    <section className="r-wrapper">
+    <div id="residencies" className="r-wrapper">
       <div className="paddings innerWidth r-container">
         <div className="r-head flexColStart">
           <span className="orangeText">Best Choices</span>
@@ -17,14 +45,14 @@ const Residencies = () => {
 
         <Swiper {...sliderSetings}>
           <SliderButtons />
-          {data.map((card, i) => (
+          {data.slice(0,8).map((card, i) => (
             <SwiperSlide key={i}>
             <PropertyCard card={card}/>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-    </section>
+    </div>
   );
 };
 export default Residencies;

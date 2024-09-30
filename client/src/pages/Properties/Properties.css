@@ -1,5 +1,6 @@
 .properties-container{
     gap: 2rem;
+    background-color: white;
 }
 
 .properties-container .search-bar{
