@@ -11,8 +11,8 @@ const Properties = () => {
 
   if (isError) {
     return (
-      <div className="wrapper">
-        <span>Error While Fetching data</span>
+      <div className="flexColCenter" style={{ height: "60vh" }}>
+        <span>Error while fetching data. Please try again later.</span>
       </div>
     );
   }
@@ -21,11 +21,9 @@ const Properties = () => {
     return (
       <div className="flexColCenter" style={{ height: "60vh" }}>
         <PuffLoader
-          height="80"
-          width="80"
-          radius={1}
+          size={80}
           color="#4066ff"
-          aria-label="puff-loading"
+          aria-label="Loading Spinner"
         />
       </div>
     );
@@ -35,9 +33,11 @@ const Properties = () => {
     <div className="flexColCenter paddings properties-container">
       <SearchBar />
       <div className="paddings flexCenter properties">
-        {
-          data.map((card,i)=>(<PropertyCard card={card} key={i}/>))
-        }
+        {data && data.length > 0 ? (
+          data.map((card, i) => <PropertyCard card={card} key={i} />)
+        ) : (
+          <span>No properties available</span>
+        )}
       </div>
     </div>
   );

@@ -6,11 +6,11 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <div style={{background:"#7f8e9f",overflow:"hidden"}}>
+      <div style={{ background: "#7f8e9f", overflow: "hidden" }}>
         <Header />
-        <Outlet/>
       </div>
-      <Footer/>
+      <Outlet />
+      <Footer />
     </>
   );
 };
