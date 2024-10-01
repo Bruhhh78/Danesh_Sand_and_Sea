@@ -8,6 +8,7 @@ import { FaShower } from "react-icons/fa";
 import { MdLocationCity, MdMeetingRoom } from "react-icons/md";
 import { AiTwotoneCar } from "react-icons/ai";
 import "./Property.css";
+import Map from "../../components/Map/Map";
 
 const Property = () => {
   const { pathname } = useLocation();
@@ -56,7 +57,6 @@ const Property = () => {
         <div className="flexCenter property-details">
           {/* left */}
           <div className="flexColStart left">
-
             {/* Head Part */}
             <div className="flexStart head">
               <span className="primaryText">{data?.title}</span>
@@ -92,11 +92,11 @@ const Property = () => {
             </span>
 
             {/* address */}
-            <div className="flexStart" style={{ gap:'1rem'}}>
+            <div className="flexStart" style={{ gap: "1rem" }}>
               <MdLocationCity size={25} />
               <span className="secondaryText address">
-                {data.address}
-                {data?.city}
+                {data.address}{" "}
+                {data?.city}{" "}
                 {data?.country}
               </span>
             </div>
@@ -106,8 +106,12 @@ const Property = () => {
           </div>
 
           {/* right */}
-          <div className="right">
-
+          <div className="map">
+            <Map
+             address= {data?.address}
+             city={data?.city}
+             country={data?.country} 
+            />
           </div>
         </div>
       </div>

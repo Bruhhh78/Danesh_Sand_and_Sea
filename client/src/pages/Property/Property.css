@@ -1,6 +1,8 @@
 .property-container {
     gap: 2rem;
     position: relative;
+    width: 100%;
+  
 }
 
 .property-container .like {
@@ -53,4 +55,5 @@
 .property-details .button:hover{
     transform: scale(1.05);
 }
+
 
