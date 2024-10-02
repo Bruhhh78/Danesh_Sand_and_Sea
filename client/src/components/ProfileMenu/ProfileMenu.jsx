@@ -11,7 +11,7 @@ const ProfileMenu = ({ user, logout }) => {
         <Button
           style={{
             backgroundColor: "transparent",
-            color: "white",
+           color:"black",
             borderRadius: "1rem",
             border: "none",
             cursor: "pointer",
