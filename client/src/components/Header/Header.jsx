@@ -4,6 +4,8 @@ import { BiMenuAltRight } from "react-icons/bi";
 import OutsideClickHandler from "react-outside-click-handler";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import ProfileMenu from "../ProfileMenu/ProfileMenu";
+import { MantineProvider } from "@mantine/core";
 
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -44,7 +46,9 @@ const Header = () => {
                 Login
               </button>
             ) : (
-              <div>User Profile</div>
+              <MantineProvider>
+                <ProfileMenu user={user} logout={logout} />
+              </MantineProvider>
             )}
           </div>
         </OutsideClickHandler>
